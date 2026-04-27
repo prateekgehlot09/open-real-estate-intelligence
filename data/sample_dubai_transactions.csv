@@ -1,6 +1,6 @@
 property_id,location,type,price,rent,liquidity,demand,pricing
-1,Business Bay,1BR,1500000,105000,4,4,3
-2,Dubai Marina,1BR,1400000,98000,4,5,2
+1,Business Bay,1BR Apartment,1500000,105000,4,4,3
+2,Dubai Marina,1BR Apartment,1400000,98000,4,5,2
 3,JVC,Studio,600000,45000,3,3,4
-4,Downtown Dubai,2BR,2800000,180000,5,5,2
+4,Downtown Dubai,2BR Apartment,2800000,180000,5,5,2
 5,Palm Jumeirah,Villa,8000000,420000,2,4,2
