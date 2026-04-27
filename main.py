@@ -1,6 +1,7 @@
 import argparse
 import csv
 import os
+
 from core.yield_validator import YieldValidator
 from core.risk_scoring import RiskScorer
 from models.report_generator import generate_report
@@ -11,6 +12,7 @@ DEFAULT_PROJECTED_YIELD = 9.5
 
 
 def process_property(row: dict, projected_yield: float, use_ai: bool) -> str:
+    """Process a single property row and return a formatted report string."""
     validator = YieldValidator(
         purchase_price=float(row["price"]),
         annual_rent=float(row["rent"])
@@ -56,7 +58,9 @@ def process_property(row: dict, projected_yield: float, use_ai: bool) -> str:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="OREIL Investment Intelligence")
+    parser = argparse.ArgumentParser(
+        description="OREIL Investment Intelligence — Titan Crest"
+    )
     parser.add_argument(
         "--file",
         default=DEFAULT_DATA_FILE,
@@ -74,33 +78,45 @@ def main():
         help="Skip AI analysis (runs without ANTHROPIC_API_KEY)"
     )
     parser.add_argument(
-    "--output",
-    default=None,
-    help="Save report to a file (e.g. --output reports/dubai_report.txt)"
+        "--output",
+        default=None,
+        help="Save report to a file (e.g. --output reports/dubai_report.txt)"
     )
     parser.add_argument(
-    "--market",
-    default=None,
-    help="Filter to a specific market/location (e.g. --market 'Business Bay')"
+        "--market",
+        default=None,
+        help="Filter to a specific location (e.g. --market 'Business Bay')"
     )
-    if args.market and row["location"].lower() != args.market.lower():
-    continue
+
     args = parser.parse_args()
-    
-output_lines = []
-with open(args.file, newline="") as f:
-    reader = csv.DictReader(f)
-    for row in reader:
-        output_lines.append(process_property(row, args.projected_yield, use_ai))
 
-full_output = "\n".join(output_lines)
-print(full_output)
+    use_ai = not args.no_ai
+    if use_ai and not os.environ.get("ANTHROPIC_API_KEY"):
+        print("Warning: ANTHROPIC_API_KEY not set. Running with --no-ai.\n")
+        use_ai = False
 
-if args.output:
-    os.makedirs(os.path.dirname(args.output) or ".", exist_ok=True)
-    with open(args.output, "w") as out:
-        out.write(full_output)
-    print(f"\nReport saved to: {args.output}")
+    output_lines = []
+
+    with open(args.file, newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if args.market and row["location"].lower() != args.market.lower():
+                continue
+            output_lines.append(process_property(row, args.projected_yield, use_ai))
+
+    if not output_lines:
+        print(f"No properties found for market: '{args.market}'")
+        return
+
+    full_output = "\n".join(output_lines)
+    print(full_output)
+
+    if args.output:
+        os.makedirs(os.path.dirname(args.output) or ".", exist_ok=True)
+        with open(args.output, "w") as out:
+            out.write(full_output)
+        print(f"\nReport saved to: {args.output}")
+
 
 if __name__ == "__main__":
     main()
