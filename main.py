@@ -34,7 +34,7 @@ def process_property(row: dict, projected_yield: float, use_ai: bool) -> str:
         "yield_grade": yield_grade,
         "risk": risk,
         "projection_gap": gap,
-        "conclusion": "Income-stable asset",
+        "conclusion": validator.investment_conclusion(risk),
     }
 
     report = generate_report(data)
