@@ -9,6 +9,7 @@ scorer = RiskScorer(4, 4, 3)
 risk = scorer.risk_category()
 
 gap = validator.projection_gap(9.5)
+data.get('projection_gap', 'N/A')
 data = {
     "location": "Business Bay",
     "type": "1BR Apartment",
