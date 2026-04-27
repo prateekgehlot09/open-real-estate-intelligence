@@ -2,63 +2,48 @@
 
 ---
 
-## Phase 1 — Foundation ✅ (Current)
+## Phase 1 — Foundation ✅ (Complete)
 
-**Goal:** Prove the intelligence framework concept with a working prototype.
-
-- [x] Yield validation model (`core/yield_validator.py`)
-- [x] Risk scoring engine (`core/risk_scoring.py`)
-- [x] Structured report generation (`models/report_generator.py`)
-- [x] Claude AI analysis layer (`models/ai_analysis.py`)
-- [x] OREIL Data Standard v0.1 (`docs/data_standard.md`)
-- [x] Sample Dubai dataset (5 properties)
-- [x] CLI entry point with `--no-ai` fallback
-- [x] Unit test suite (`tests/`)
+- [x] Yield validation model
+- [x] Risk scoring engine
+- [x] Structured report generation
+- [x] Claude AI analysis layer
+- [x] OREIL Data Standard v0.1
+- [x] CLI with `--no-ai` fallback, `--market` filter, `--output` flag
+- [x] Streamlit intelligence dashboard
+- [x] FastAPI REST layer
+- [x] Unit test suite
 - [x] MIT open-source license
 
 ---
 
-## Phase 2 — Multi-Market Data
+## Phase 2 — Data Expansion
 
-**Goal:** Expand beyond Dubai with standardised datasets across GCC and global markets.
+Expanding the dataset layer to cover additional markets and asset classes.
 
-- [ ] Abu Dhabi dataset
-- [ ] Riyadh / KSA dataset
-- [ ] London dataset
-- [ ] Singapore dataset
-- [ ] Currency-normalised yield comparison
-- [ ] Market benchmarking across geographies
+*Details available to institutional partners and contributors. See [CONTRIBUTING.md](CONTRIBUTING.md).*
 
 ---
 
 ## Phase 3 — Advanced Intelligence
 
-**Goal:** Move from static scoring to dynamic, data-driven risk models.
+Moving from static scoring to dynamic, data-driven risk and return models.
 
-- [ ] Volatility-adjusted risk scoring
-- [ ] Net yield calculation (after fees, vacancy, tax)
-- [ ] Capital growth overlay
-- [ ] AI-assisted underwriting narrative (extended Claude prompts)
-- [ ] Comparable transaction analysis
+*Methodology details published as each model is released.*
 
 ---
 
 ## Phase 4 — Platform
 
-**Goal:** Expose OREIL as a structured API and web interface.
-
-- [ ] FastAPI wrapper (JSON output)
-- [ ] REST endpoints for yield, risk, and report generation
-- [ ] React web interface
-- [ ] Institutional-grade batch processing
+Exposing OREIL as a structured API and web interface for institutional use.
 
 ---
 
 ## Phase 5 — Global Standard
 
-**Goal:** Establish OREIL as the open standard for real estate intelligence data.
+Establishing OREIL as the open standard for real estate investment intelligence data.
 
-- [ ] Live data ingestion from government transaction registries
-- [ ] OREIL Data Standard v2.0 (multi-currency, multi-market)
-- [ ] Institutional adoption and partnership programme
-- [ ] Published academic methodology paper
+---
+
+> Roadmap priorities are driven by contributor demand and Titan Crest's active market coverage.
+> To discuss partnership, data integration, or institutional access, open an issue or contact via GitHub.
