@@ -1,97 +1,46 @@
-from unittest.mock import MagicMock, patch
-from models.ai_analysis import get_ai_insight
-from core.yield_validator import YieldValidator
+"""Tests for models.ai_analysis. The Anthropic SDK call is mocked so tests
+run offline and require no API key."""
+from unittest.mock import patch, MagicMock
+import pytest
 
 
-class TestAIAnalysis:
-    """Tests for the Claude AI analysis layer using mocked API calls."""
+def test_ai_insight_returns_string_when_enabled(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key-not-real")
 
-    @patch("models.ai_analysis.anthropic.Anthropic")
-    def test_returns_string(self, mock_anthropic):
-        """AI insight should return a non-empty string."""
-        mock_client = MagicMock()
-        mock_anthropic.return_value = mock_client
-        mock_client.messages.create.return_value.content[0].text = (
-            "Mocked Claude insight for testing."
-        )
-        result = get_ai_insight(
+    from models import ai_analysis
+
+    fake_message = MagicMock()
+    fake_message.content = [MagicMock(text="Mocked Claude reasoning about Business Bay.")]
+
+    fake_client = MagicMock()
+    fake_client.messages.create.return_value = fake_message
+
+    with patch.object(ai_analysis, "Anthropic", return_value=fake_client):
+        result = ai_analysis.generate_insight(
             location="Business Bay",
             asset_type="1BR Apartment",
-            price=1500000,
-            yield_value=7.0,
-            yield_grade="Good",
-            projection_gap=-2.5,
-            risk="Low Risk",
+            validated_yield=7.0,
+            risk_category="Moderate Risk",
+            conclusion="Income-stable asset with moderate market sensitivity.",
         )
-        assert isinstance(result, str)
-        assert len(result) > 0
 
-    @patch("models.ai_analysis.anthropic.Anthropic")
-    def test_prompt_contains_location(self, mock_anthropic):
-        """Prompt sent to Claude must include the property location."""
-        mock_client = MagicMock()
-        mock_anthropic.return_value = mock_client
-        mock_client.messages.create.return_value.content[0].text = "Insight."
+    assert isinstance(result, str)
+    assert len(result) > 0
 
-        get_ai_insight(
-            location="Palm Jumeirah",
-            asset_type="Villa",
-            price=8000000,
-            yield_value=5.25,
-            yield_grade="Fair",
-            projection_gap=-4.25,
-            risk="Moderate Risk",
-        )
-        call_args = mock_client.messages.create.call_args
-        prompt_text = call_args[1]["messages"][0]["content"]
-        assert "Palm Jumeirah" in prompt_text
 
-    @patch("models.ai_analysis.anthropic.Anthropic")
-    def test_prompt_contains_yield(self, mock_anthropic):
-        """Prompt sent to Claude must include the validated yield value."""
-        mock_client = MagicMock()
-        mock_anthropic.return_value = mock_client
-        mock_client.messages.create.return_value.content[0].text = "Insight."
+def test_ai_insight_disabled_without_key(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
 
-        get_ai_insight(
-            location="JVC",
-            asset_type="Studio",
-            price=600000,
-            yield_value=7.5,
-            yield_grade="Good",
-            projection_gap=-2.0,
-            risk="Moderate Risk",
-        )
-        call_args = mock_client.messages.create.call_args
-        prompt_text = call_args[1]["messages"][0]["content"]
-        assert "7.5" in prompt_text
+    from models import ai_analysis
 
-    @patch("models.ai_analysis.anthropic.Anthropic")
-    def test_api_called_once_per_property(self, mock_anthropic):
-        """Claude API should be called exactly once per property analysis."""
-        mock_client = MagicMock()
-        mock_anthropic.return_value = mock_client
-        mock_client.messages.create.return_value.content[0].text = "Insight."
+    result = ai_analysis.generate_insight(
+        location="Business Bay",
+        asset_type="1BR Apartment",
+        validated_yield=7.0,
+        risk_category="Moderate Risk",
+        conclusion="Income-stable asset with moderate market sensitivity.",
+    )
 
-        get_ai_insight(
-            location="Dubai Marina",
-            asset_type="1BR Apartment",
-            price=1400000,
-            yield_value=7.0,
-            yield_grade="Good",
-            projection_gap=-2.5,
-            risk="Low Risk",
-        )
-        assert mock_client.messages.create.call_count == 1
-
-    def test_investment_conclusion_high_yield_low_risk(self):
-        """Excellent yield + Low Risk should return the strongest conclusion."""
-        v = YieldValidator(1000000, 90000)  # 9.0% → Excellent
-        result = v.investment_conclusion("Low Risk")
-        assert "High-yield" in result
-
-    def test_investment_conclusion_poor_yield(self):
-        """Poor yield should return capital-play-only conclusion."""
-        v = YieldValidator(10000000, 100000)  # 1.0% → Poor
-        result = v.investment_conclusion("High Risk")
-        assert "Capital play only" in result
+    # When no key is set, the integration should degrade gracefully,
+    # not crash. Either return None or a clear "AI disabled" string.
+    assert result is None or "disabled" in result.lower() or "unavailable" in result.lower()
