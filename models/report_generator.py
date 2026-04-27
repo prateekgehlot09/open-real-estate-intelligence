@@ -3,8 +3,8 @@ def generate_report(data: dict) -> str:
     Generates a formatted OREIL investment intelligence report.
 
     Args:
-        data: Dict with keys: location, type, price, yield, risk,
-              projection_gap, conclusion, and optionally yield_grade.
+        data: Dict with keys: location, type, price, yield, yield_grade,
+              risk, projection_gap, conclusion.
     Returns:
         Formatted multi-line string report.
     """
@@ -25,5 +25,4 @@ Validated Yield  : {data['yield']}%
 Risk Category    : {data['risk']}
 ------------------------------------------------------------
 Conclusion    : {data['conclusion']}
-============================================================
-"""
+------------------------------------------------------------"""
