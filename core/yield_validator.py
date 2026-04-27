@@ -5,3 +5,7 @@ class YieldValidator:
 
     def calculate_yield(self):
         return round((self.annual_rent / self.purchase_price) * 100, 2)
+
+def projection_gap(self, projected_yield):
+    actual = self.calculate_yield()
+    return round(actual - projected_yield, 2)
