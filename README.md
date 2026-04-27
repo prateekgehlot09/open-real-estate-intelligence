@@ -32,3 +32,42 @@ Conclusion: Income-stable asset.
 
 ```bash
 python main.py
+
+---
+
+## Repository Structure
+
+- `core/` calculation models
+- `models/` report generation
+- `data/` sample datasets
+- `docs/` architecture
+- `examples/` sample outputs
+
+---
+
+## Why This Matters for AI
+
+Real estate lacks standardized intelligence frameworks.
+
+OREIL aims to become:
+- A structured dataset layer
+- A decision intelligence engine
+- A foundation for AI-driven real estate analysis
+
+---
+
+## Status
+
+Version 0.1 prototype.
+
+---
+
+## Roadmap
+
+See `roadmap.md`.
+
+---
+
+## Contributing
+
+See `CONTRIBUTING.md`.
