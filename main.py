@@ -78,6 +78,13 @@ def main():
     default=None,
     help="Save report to a file (e.g. --output reports/dubai_report.txt)"
     )
+    parser.add_argument(
+    "--market",
+    default=None,
+    help="Filter to a specific market/location (e.g. --market 'Business Bay')"
+    )
+    if args.market and row["location"].lower() != args.market.lower():
+    continue
     args = parser.parse_args()
     
 output_lines = []
