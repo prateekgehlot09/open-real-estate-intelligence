@@ -4,15 +4,16 @@
 
 ## Phase 1 — Foundation ✅ (Complete)
 
-- [x] Yield validation model
-- [x] Risk scoring engine
-- [x] Structured report generation
-- [x] Claude AI analysis layer
-- [x] OREIL Data Standard v0.1
-- [x] CLI with `--no-ai` fallback, `--market` filter, `--output` flag
-- [x] Streamlit intelligence dashboard
-- [x] FastAPI REST layer
-- [x] Unit test suite
+- [x] Yield validation model (`core/yield_validator.py`)
+- [x] Risk scoring engine (`core/risk_scoring.py`)
+- [x] Structured report generation (`models/report_generator.py`)
+- [x] Claude AI analysis layer (`models/ai_analysis.py`)
+- [x] OREIL Data Standard v0.1 (`docs/data_standard.md`)
+- [x] Sample Dubai dataset — 5 properties
+- [x] CLI with `--no-ai`, `--market`, `--output` flags
+- [x] Streamlit intelligence dashboard (`dashboard/app.py`)
+- [x] FastAPI REST layer (`api/main.py`)
+- [x] Unit test suite (`tests/`)
 - [x] MIT open-source license
 
 ---
@@ -21,7 +22,8 @@
 
 Expanding the dataset layer to cover additional markets and asset classes.
 
-*Details available to institutional partners and contributors. See [CONTRIBUTING.md](CONTRIBUTING.md).*
+*Details available to institutional partners and contributors.*
+*See [CONTRIBUTING.md](CONTRIBUTING.md) to get involved.*
 
 ---
 
@@ -46,4 +48,4 @@ Establishing OREIL as the open standard for real estate investment intelligence 
 ---
 
 > Roadmap priorities are driven by contributor demand and Titan Crest's active market coverage.
-> To discuss partnership, data integration, or institutional access, open an issue or contact via GitHub.
+> To discuss partnership, data integration, or institutional access, open an issue on GitHub.
