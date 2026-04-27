@@ -1,5 +1,6 @@
 from unittest.mock import MagicMock, patch
 from models.ai_analysis import get_ai_insight
+from core.yield_validator import YieldValidator
 
 
 class TestAIAnalysis:
@@ -83,12 +84,14 @@ class TestAIAnalysis:
         )
         assert mock_client.messages.create.call_count == 1
 
-    @patch("models.ai_analysis.anthropic.Anthropic")
-    def test_conclusion_tests_for_yield_validator(self, mock_anthropic):
-        """investment_conclusion returns different strings for different grades."""
-        from core.yield_validator import YieldValidator
-        v_excellent = YieldValidator(1000000, 90000)   # 9.0% → Excellent
-        v_poor = YieldValidator(10000000, 100000)       # 1.0% → Poor
+    def test_investment_conclusion_high_yield_low_risk(self):
+        """Excellent yield + Low Risk should return the strongest conclusion."""
+        v = YieldValidator(1000000, 90000)  # 9.0% → Excellent
+        result = v.investment_conclusion("Low Risk")
+        assert "High-yield" in result
 
-        assert "High-yield" in v_excellent.investment_conclusion("Low Risk")
-        assert "Capital play only" in v_poor.investment_conclusion("High Risk")
+    def test_investment_conclusion_poor_yield(self):
+        """Poor yield should return capital-play-only conclusion."""
+        v = YieldValidator(10000000, 100000)  # 1.0% → Poor
+        result = v.investment_conclusion("High Risk")
+        assert "Capital play only" in result
