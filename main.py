@@ -73,18 +73,27 @@ def main():
         action="store_true",
         help="Skip AI analysis (runs without ANTHROPIC_API_KEY)"
     )
+    parser.add_argument(
+    "--output",
+    default=None,
+    help="Save report to a file (e.g. --output reports/dubai_report.txt)"
+    )
     args = parser.parse_args()
+    
+output_lines = []
+with open(args.file, newline="") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        output_lines.append(process_property(row, args.projected_yield, use_ai))
 
-    use_ai = not args.no_ai
-    if use_ai and not os.environ.get("ANTHROPIC_API_KEY"):
-        print("Warning: ANTHROPIC_API_KEY not set. Running with --no-ai.\n")
-        use_ai = False
+full_output = "\n".join(output_lines)
+print(full_output)
 
-    with open(args.file, newline="") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            print(process_property(row, args.projected_yield, use_ai))
-
+if args.output:
+    os.makedirs(os.path.dirname(args.output) or ".", exist_ok=True)
+    with open(args.output, "w") as out:
+        out.write(full_output)
+    print(f"\nReport saved to: {args.output}")
 
 if __name__ == "__main__":
     main()
