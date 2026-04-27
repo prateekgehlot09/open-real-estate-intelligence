@@ -8,14 +8,15 @@ OREIL validates real estate investment assumptions using structured data, yield 
 
 ## Sample Output
 
-Asset: Business Bay, Dubai  
-Price: AED 1,500,000  
-Rent: AED 105,000  
-
-Validated Yield: 7.0%  
-Projection Gap: -2.5%  
-
-Conclusion: Income-stable asset.
+```
+Location: Business Bay
+Type: 1BR Apartment
+Price: AED 1500000
+Yield: 7.0%
+Risk: Low Risk
+Projection Gap: -2.5%
+Conclusion: Income-stable asset
+```
 
 ---
 
@@ -32,6 +33,7 @@ Conclusion: Income-stable asset.
 
 ```bash
 python main.py
+```
 
 ---
 
@@ -47,9 +49,8 @@ python main.py
 
 ## Why This Matters for AI
 
-Real estate lacks standardized intelligence frameworks.
+Real estate lacks standardized intelligence frameworks. OREIL aims to become:
 
-OREIL aims to become:
 - A structured dataset layer
 - A decision intelligence engine
 - A foundation for AI-driven real estate analysis
@@ -64,10 +65,10 @@ Version 0.1 prototype.
 
 ## Roadmap
 
-See `roadmap.md`.
+See [roadmap.md](roadmap.md).
 
 ---
 
 ## Contributing
 
-See `CONTRIBUTING.md`.
+See [CONTRIBUTING.md](CONTRIBUTING.md).
