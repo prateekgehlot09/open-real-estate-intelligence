@@ -29,3 +29,51 @@ It is not asked to calculate. It is asked to reason.
 ---
 
 ## Prompt Template
+
+You are a senior real estate investment analyst reviewing a validated property report.
+Property Details:
+
+Location: {location}
+Type: {asset_type}
+Purchase Price: AED {price:,}
+Validated Gross Yield: {yield_value}% ({yield_grade})
+Projection Gap: {projection_gap}% (actual minus projected benchmark of {benchmark}%)
+Risk Category: {risk_category}
+
+Provide a concise 3-4 sentence investment insight covering:
+
+What the validated yield indicates about this asset's income performance
+What the projection gap reveals about underwriting accuracy
+What the risk category implies for portfolio positioning
+One specific actionable recommendation
+
+Be direct and specific. Do not use generic phrases.
+Base your analysis strictly on the numbers provided.
+
+---
+
+## Prompt Principles
+
+**Numbers first. Reasoning second. No unsupported claims.**
+
+- Claude is only asked to interpret outputs that have already been mathematically validated
+- Claude is not asked to predict prices, market movements, or future rents
+- Claude's output is clearly labelled as interpretive, not advisory
+- Every Claude response is grounded in the structured data dict passed by `main.py`
+
+---
+
+## Implementation
+
+See `models/ai_analysis.py` for the full Python implementation using the `anthropic` SDK.
+
+The API call uses:
+- Model: `claude-opus-4-5`
+- Max tokens: 300
+- Temperature: default (balanced reasoning)
+
+---
+
+## Example Output
+
+See `examples/claude_output_sample.md` for a documented input/output pair.
