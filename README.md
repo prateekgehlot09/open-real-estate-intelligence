@@ -41,11 +41,11 @@ preservation allocation. Recommendation: underwrite at
 
 ---
 
-## Strategic Context
+## Built by Titan Crest
 
-OREIL was created by the founder of [Titan Crest Real Estate](https://github.com/prateekgehlot09) to develop a more transparent, data-driven approach to real estate decision-making.
+OREIL is the open-source intelligence framework built and maintained by [Titan Crest Real Estate](https://github.com/prateekgehlot09).
 
-Titan Crest uses this framework to move beyond listing-based brokerage toward investment intelligence, yield validation, and structured advisory. The goal is not to sell properties — it is to help investors make verified, data-led decisions.
+Titan Crest operates as a real estate investment intelligence firm. Every client engagement is grounded in yield validation, risk scoring, and structured decision analysis — the same framework that powers this repository.
 
 ---
 
