@@ -39,18 +39,18 @@ class YieldValidator:
                 return grade
         return "Poor"
 
-   def investment_conclusion(self, risk_category: str) -> str:
-    """Derives a conclusion from yield grade and risk, rather than hardcoding it."""
-    grade = self.yield_grade()
-    if grade == "Excellent" and risk_category == "Low Risk":
-        return "High-yield, low-risk asset. Strong income play."
-    elif grade in ("Excellent", "Good") and risk_category == "Moderate Risk":
-        return "Income-stable asset with moderate market sensitivity."
-    elif grade in ("Excellent", "Good") and risk_category == "Low Risk":
-        return "Income-stable asset. Defensive income play."
-    elif grade == "Fair":
-        return "Below-average yield. Underwrite on capital appreciation, not income."
-    elif grade == "Poor":
-        return "Yield insufficient for income mandate. Capital play only."
-    else:
-        return "Income profile requires further validation."
+    def investment_conclusion(self, risk_category: str) -> str:
+        """Derives a conclusion from yield grade and risk, rather than hardcoding it."""
+        grade = self.yield_grade()
+        if grade == "Excellent" and risk_category == "Low Risk":
+            return "High-yield, low-risk asset. Strong income play."
+        elif grade in ("Excellent", "Good") and risk_category == "Moderate Risk":
+            return "Income-stable asset with moderate market sensitivity."
+        elif grade in ("Excellent", "Good") and risk_category == "Low Risk":
+            return "Income-stable asset. Defensive income play."
+        elif grade == "Fair":
+            return "Below-average yield. Underwrite on capital appreciation, not income."
+        elif grade == "Poor":
+            return "Yield insufficient for income mandate. Capital play only."
+        else:
+            return "Income profile requires further validation."
