@@ -4,6 +4,8 @@
 
 Built for investors, analysts, and developers who need a structured intelligence layer — not another dashboard.
 
+> Built and open-sourced by [Titan Crest Real Estate](https://github.com/prateekgehlot09)
+
 ---
 
 ## Sample Output
@@ -25,14 +27,12 @@ Conclusion    : Income-stable asset
 ------------------------------------------------------------
 
 AI Insight (Claude):
-Business Bay's 7.0% yield represents a stable income profile
-in a high-liquidity submarket. The -2.5% projection gap
-against a 9.5% benchmark confirms this is a defensive
-income asset, not a high-yield play. Low Risk classification
-reflects strong demand and exit liquidity. Recommendation:
-appropriate for capital-preservation portfolios; do not
-underwrite expecting yield compression recovery above 8.5%
-without structural rental supply changes.
+Business Bay's 7.0% yield reflects a stable income profile in a
+liquid, high-demand submarket. The -2.5% projection gap confirms
+investors underwriting at 9.5% are mispricing expectations — the
+validated yield is the ceiling, not the floor. Low Risk classification
+supports a capital-preservation allocation. Recommendation: underwrite
+at 7.0-7.5% with no rent growth assumption for 24 months.
 ============================================================
 ```
 
@@ -78,7 +78,7 @@ python main.py
 # Run without AI (no API key needed)
 python main.py --no-ai
 
-# Run against a custom dataset
+# Run against a custom dataset with a custom yield benchmark
 python main.py --file data/sample_dubai_transactions.csv --projected-yield 8.5
 ```
 
@@ -87,10 +87,11 @@ python main.py --file data/sample_dubai_transactions.csv --projected-yield 8.5
 ## Repository Structure
 
 - `core/` — yield validation and risk scoring models
-- `models/` — report generation and AI analysis layer
-- `data/` — sample transaction datasets
-- `docs/` — architecture documentation
-- `examples/` — sample outputs across multiple assets
+- `models/` — report generation and Claude AI analysis layer
+- `data/` — sample transaction datasets (OREIL Data Standard v0.1)
+- `docs/` — architecture, data standard, and Claude prompt documentation
+- `examples/` — sample outputs across multiple assets and markets
+- `tests/` — unit tests for core validation and risk models
 
 ---
 
@@ -103,6 +104,18 @@ OREIL aims to become:
 - A structured dataset layer for real estate AI
 - A decision intelligence engine for investor underwriting
 - A foundation for AI-driven real estate analysis at scale
+
+---
+
+## Limitations
+
+OREIL v0.1 is a prototype. Current limitations:
+
+- Uses sample datasets only — does not connect to live government transaction registries
+- Risk scores (liquidity, demand, pricing) are manually assigned — not yet derived from market data
+- Does not provide financial advice — all outputs are informational only
+- AI insights are interpretive and depend entirely on validated structured inputs
+- Single-market focus (Dubai) — multi-market expansion is Phase 2
 
 ---
 
