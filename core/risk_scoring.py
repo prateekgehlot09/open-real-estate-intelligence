@@ -7,8 +7,8 @@ class RiskScorer:
     def calculate_score(self):
         score = (
             (5 - self.liquidity) * 0.3 +
-            (5 - self.demand) * 0.3 +
-            (self.pricing) * 0.4
+            (5 - self.demand)    * 0.3 +
+            (5 - self.pricing)   * 0.4
         )
         return round(score, 2)
 
