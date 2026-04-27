@@ -20,11 +20,11 @@ open-source framework.
 
 ## Working With Titan Crest
 
-OREIL is open-source and free to use.
+OREIL is open-source and free to use under the MIT license.
 
 For institutional-grade analysis, custom market datasets, or structured
-investment advisory, contact Titan Crest directly via GitHub or
-[titancrest.ae](https://titancrest.ae).
+investment advisory, open an issue on this repository or contact via GitHub:
+[@prateekgehlot09](https://github.com/prateekgehlot09)
 
 ---
 
