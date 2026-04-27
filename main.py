@@ -5,8 +5,6 @@ from models.report_generator import generate_report
 validator = YieldValidator(1500000, 105000)
 yield_value = validator.calculate_yield()
 
-gap = validator.projection_gap(9.5)
-
 scorer = RiskScorer(4, 4, 3)
 risk = scorer.risk_category()
 
@@ -20,3 +18,7 @@ data = {
 }
 
 print(generate_report(data))
+
+gap = validator.projection_gap(9.5)
+
+"projection_gap": gap,
