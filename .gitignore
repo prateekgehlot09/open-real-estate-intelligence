@@ -1,11 +1,53 @@
+# Python
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyd
+
+# Virtual environments
 .env
+.env.*
 venv/
 .venv/
+env/
+
+# Build artifacts
 *.egg-info/
 dist/
 build/
 .pytest_cache/
+
+# OS
 .DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# API keys and secrets — NEVER commit these
+.env.local
+secrets.py
+secrets.json
+*_secret*
+*_private*
+api_key*
+
+# Internal strategy and client data — keep off GitHub
+docs/strategy/
+docs/internal/
+docs/titan_crest_strategy.md
+data/client_*.csv
+data/internal_*.csv
+data/live_*.csv
+data/dld_*.csv
+reports/client_*/
+reports/internal_*/
+
+# Generated reports (may contain client details)
+reports/
+
+# Streamlit local config
+.streamlit/secrets.toml
