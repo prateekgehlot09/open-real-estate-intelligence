@@ -1,5 +1,7 @@
 # Open Real Estate Intelligence Layer (OREIL)
 
+![Tests](https://github.com/prateekgehlot09/open-real-estate-intelligence/actions/workflows/tests.yml/badge.svg)
+
 **A working prototype of an open real estate intelligence system that validates yield, identifies projection gaps, scores investment risk, and generates structured AI-powered investment decisions.**
 
 Built for investors, analysts, and developers who need a structured intelligence layer — not another dashboard.
