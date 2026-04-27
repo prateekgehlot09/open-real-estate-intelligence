@@ -12,4 +12,3 @@ class YieldValidator:
     def projection_gap(self, projected_yield):
         actual = self.calculate_yield()
         return round(actual - projected_yield, 2)
-
