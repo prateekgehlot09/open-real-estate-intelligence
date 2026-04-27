@@ -30,3 +30,13 @@ Income-stable asset.
 
 ```bash
 python main.py
+
+
+## Why This Matters for AI
+
+Real estate lacks standardized intelligence frameworks.
+
+OREIL aims to become:
+- A structured dataset layer
+- A decision intelligence engine
+- A foundation for AI-driven real estate analysis
