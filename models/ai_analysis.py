@@ -55,6 +55,5 @@ Be direct and specific. Do not use generic phrases. Base your analysis strictly 
             {"role": "user", "content": prompt}
         ]
     )
-  
-    return message.content[0].text  
+
     return message.content[0].text
